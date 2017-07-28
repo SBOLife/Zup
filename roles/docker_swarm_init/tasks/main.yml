@@ -1,0 +1,3 @@
+---
+ - name: Inicializando o Docker Swarm
+   command: bash -c 'docker swarm init --advertise-addr {{ ip_docker_node1 }}'

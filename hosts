@@ -1,0 +1,12 @@
+192.168.24.10 ansible_user=root ansible_ssh_pass=password
+192.168.24.20 ansible_user=root ansible_ssh_pass=password
+192.168.24.30 ansible_user=root ansible_ssh_pass=password
+
+[dockers_node1]
+192.168.24.10
+
+[dockers_node2]
+192.168.24.20
+
+[dockers_node3]
+192.168.24.30

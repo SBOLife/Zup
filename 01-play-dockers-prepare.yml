@@ -1,0 +1,4 @@
+---
+- hosts: dockers_node1,dockers_node2,dockers_node3
+  roles:
+   - docker_prepare

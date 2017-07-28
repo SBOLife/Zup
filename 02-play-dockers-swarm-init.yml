@@ -1,0 +1,4 @@
+---
+- hosts: dockers_node1
+  roles:
+   - docker_swarm_init

@@ -1,0 +1,13 @@
+---
+ - name: Pegando o Token do Cluster Docker
+   command: bash -c 'docker swarm join-token -q manager'
+   register: token_out
+   when: inventory_hostname in groups['dockers_node1']
+
+ - name: Adicionando nodes no Docker Swarm
+   command: bash -c 'docker swarm join --token {{ hostvars[groups['dockers_node1'][0]].token_out.stdout }} {{ ip_docker_node1 }}:{{ porta_manager }}'
+   when: not inventory_hostname in groups['dockers_node1'] and hostvars[groups['dockers_node1'][0]].token_out is defined
+
+ - name: Criando a Rede de Interconexao com os Nodes
+   command: bash -c 'docker network create -d overlay rede_interna'
+   when: inventory_hostname in groups['dockers_node1']

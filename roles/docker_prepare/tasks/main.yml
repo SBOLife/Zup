@@ -1,0 +1,26 @@
+---
+ - name: Atualizando lista de pacotes APT
+   command: bash -c 'apt update'
+
+ - name: Instalando Pacotes Necessarios
+   apt: name={{ item }} state=installed
+   with_items:
+     - apt-transport-https
+     - curl
+     - ca-certificates
+     - gnupg2
+     - software-properties-common
+
+ - name: Adicionando Dockers GPG
+   command: bash -c 'curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -'
+
+ - name: Adicionando Repositorio Dockers
+   command: bash -c 'add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"'
+
+ - name: Atualiza Cache APT
+   command: bash -c 'apt update'
+
+ - name: Instalando Docker-CE
+   apt:
+    name: docker-ce
+    state: present 

@@ -1,0 +1,3 @@
+---
+ - name: Subindo NGINX
+   command: bash -c 'docker service create --name nginx --publish 80:80 --replicas 3 nginx'
